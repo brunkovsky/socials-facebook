@@ -1,0 +1,53 @@
+spring:
+  application:
+    name: socials-facebook
+  config:
+    import: "optional:configserver:http://localhost:8888"
+  profiles:
+    active: local
+  data:
+    rest:
+      basePath: "/api/socials/facebook"
+#  mvc:
+#    view:
+#      prefix: /WEB-INF/jsp/
+#      suffix: .jsp
+
+server:
+  port: 8082
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    env:
+      post:
+        enabled: true
+
+logging:
+  level:
+    org:
+      example:
+        socials:
+          facebook:
+            rabbit: DEBUG
+
+info:
+  app:
+    name: "Socials Facebook module"
+    description: "The module intended to get Facebook posts and send them to social storage"
+
+socials:
+  rabbit:
+    exchange:
+      storage:
+        name: socials-storage
+
+
+
+
+# This new long-lived access token will expire on January 18, 2024
+# EAAC7biDFky0BO8toEiFmfoOMZCw4ZAHAwiGXFjMe0G9iB7A8pmLlVVQZAmG1iU3fY2fwClL0ZBKWbbEEGlEKupXIIRwvy9F3hIYpBMsBOiydPMNUwmxhmKKfyYAzz4YkyxT8vgZCLHc1QLMgBDKKl0AZBn73rMvYs2Dyw7ik3E8ugJwZC9E5Lc2vU9v
+# 663377994414452
