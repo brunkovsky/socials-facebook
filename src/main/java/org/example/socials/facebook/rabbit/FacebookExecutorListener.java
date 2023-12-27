@@ -7,6 +7,8 @@ import org.springframework.amqp.rabbit.annotation.EnableRabbit;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 
+import java.util.concurrent.Executors;
+
 @Slf4j
 @Component
 @EnableRabbit
@@ -19,6 +21,12 @@ public class FacebookExecutorListener {
     public void catchMessage(String message) {
         log.debug("catching executing message: {}", message);
         new Thread(() -> facebookService.fetch(message)).start();
+
+//        Executors.newSingleThreadExecutor().submit(() -> {
+//            log.debug("catching executing message: {}", message);
+//            facebookService.fetch(message);
+//        });
+
     }
 
 }
